@@ -67,7 +67,11 @@ def fit_polynomial(xs, ys, degree):
     return coefficients
 
 def evaluate_polynomial(x, coefficients):
-    pass
+    n = len(coefficients)-1
+    x_pow = [1 for i in range(n+1)]
+    for i in range(1, n+1):
+        x_pow[i] = x_pow[i-1] * x
+    return sum(coefficients[i]*x_pow[i] for i in range(n+1))
 
 # Polynomial approximations
 
@@ -95,8 +99,3 @@ def lookup_table():
 
 def newton_raphson():
     pass
-
-xs = [0, 1, 2, 3, 4]
-ys = [1.1, 2.9, 5.2, 6.8, 9.1]
-
-print(fit_polynomial(xs, ys, 1))
